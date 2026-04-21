@@ -1,3 +1,3 @@
 #pragma once
-#include<config/config.h>
+#include<entity/entity.h>
 
