@@ -16,7 +16,8 @@ set(CMAKE_C_STANDARD 99)
 set(CMAKE_C_STANDARD_REQUIRED ON)
 #创建静态库
 add_library(base INTERFACE)#公共头文件
-add_library(memory STATIC "memory/memory.c")#//内存管理器
+add_library(structure STATIC "structure/stack.c" "structure/queue.c")
+add_library(memory STATIC "memory/memory.c")
 add_library(tool STATIC "tool/tool.c")#通用工具
 add_library(entity STATIC "entity/entity.c")#实体对象
 add_library(config STATIC "config/config.c")#配置数据
@@ -27,6 +28,7 @@ add_library(interaction STATIC "interaction/interaction.c")#交互
 add_executable(main "main.c")
 #公示头文件路径
 target_include_directories(base INTERFACE ${PROJECT_SOURCE_DIR})
+target_include_directories(structure INTERFACE ${PROJECT_SOURCE_DIR})
 target_include_directories(memory PUBLIC ${PROJECT_SOURCDE_DIR})
 target_include_directories(tool PUBLIC ${PROJECT_SOURCDE_DIR})
 target_include_directories(entity PUBLIC ${PROJECT_SOURCDE_DIR})
@@ -36,6 +38,7 @@ target_include_directories(game_statu PUBLIC ${PROJECT_SOURCDE_DIR})
 target_include_directories(interaction PUBLIC ${PROJECT_SOURCDE_DIR})
 #创建依赖关系
 target_link_libraries(memory PUBLIC base)
+target_link_libraries(structure PUBLIC base)
 target_link_libraries(tool PUBLIC memory)
 target_link_libraries(entity PUBLIC tool)
 target_link_libraries(config PUBLIC entity)
